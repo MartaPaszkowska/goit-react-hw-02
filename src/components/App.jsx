@@ -7,10 +7,16 @@ function App() {
 	return (
 		<>
 			<Descriptions />
-			<Feedback />
 			<Options />
+			<Feedback />
 		</>
 	);
 }
 
 export default App;
+
+//{
+//	good: 0,
+//	neutral: 0,
+//	bad: 0
+//}
