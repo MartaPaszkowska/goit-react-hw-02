@@ -1,22 +1,14 @@
 import "./Options.css";
-const Options = () => {
+
+function Options({ onLeaveFeedback, onReset }) {
 	return (
-		<>
-			<ul className="buttons-list">
-				<li>
-					<button className="buttom-item">Good</button>
-				</li>
-				<li>
-					<button className="buttom-item">Neutral</button>
-				</li>
-				<li>
-					<button className="buttom-item">Bad</button>
-				</li>
-				<li>
-					<button className="buttom-item">Restart</button>
-				</li>
-			</ul>
-		</>
+		<div className="options-container">
+			<button onClick={() => onLeaveFeedback("good")}>Good</button>
+			<button onClick={() => onLeaveFeedback("neutral")}>Neutral</button>
+			<button onClick={() => onLeaveFeedback("bad")}>Bad</button>
+			<button onClick={onReset}>Reset</button>
+		</div>
 	);
-};
+}
+
 export default Options;

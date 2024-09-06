@@ -1,16 +1,21 @@
-.buttons-list {
+.options-container {
 	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	gap: 10px;
-	padding: 0;
-	list-style: none;
-	margin-top: 20px;
+	justify-content: space-around;
+	margin-bottom: 20px;
 }
-.buttom-item {
-	border: 2px solid black;
-	border-radius: 10px;
-	text-align: center;
-	width: 120px;
-	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+.options-container button {
+	padding: 10px 20px;
+	font-size: 16px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.options-container button:hover {
+	background-color: #f0f0f0;
+}
+
+.options-container button:active {
+	background-color: #ddd;
 }

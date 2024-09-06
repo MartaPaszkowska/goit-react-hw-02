@@ -1,16 +1,15 @@
 import "./Feedback.css";
 
-const Feedback = () => {
+function Feedback({ good, neutral, bad, total, positivePercentage }) {
 	return (
-		<>
-			<ul>
-				<li>Good: </li>
-				<li>Neutral: </li>
-				<li>Bad: </li>
-				<li>Total:</li>
-				<li>Positive: </li>
-			</ul>
-		</>
+		<div className="feedback-container">
+			<p>Good: {good}</p>
+			<p>Neutral: {neutral}</p>
+			<p>Bad: {bad}</p>
+			<p>Total: {total}</p>
+			<p>Positive: {positivePercentage}%</p>
+		</div>
 	);
-};
+}
+
 export default Feedback;
