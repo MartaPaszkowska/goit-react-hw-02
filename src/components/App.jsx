@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
-import Description from "./Description";
-import Options from "./Options";
-import Feedback from "./Feedback";
+import { useState, useEffect } from "react";
+import Description from "./Description.jsx";
+import Options from "./Options.jsx";
+import Feedback from "./Feedback.jsx";
+import Notification from "./Notification.jsx";
 import "./App.css";
 
 function App() {
@@ -18,35 +19,40 @@ function App() {
 		localStorage.setItem("feedback", JSON.stringify(feedback));
 	}, [feedback]);
 
-	const handleFeedback = (type) => {
+	const updateFeedback = (feedbackType) => {
 		setFeedback((prevFeedback) => ({
 			...prevFeedback,
-			[type]: prevFeedback[type] + 1,
+			[feedbackType]: prevFeedback[feedbackType] + 1,
 		}));
 	};
 
 	const handleReset = () => {
 		const resetFeedback = { good: 0, neutral: 0, bad: 0 };
 		setFeedback(resetFeedback);
-		localStorage.removeItem("feedback"); // Opcjonalnie, usuń dane z localStorage podczas resetu
+		localStorage.removeItem("feedback");
 	};
 
 	const totalFeedback = feedback.good + feedback.neutral + feedback.bad;
 	const positivePercentage = totalFeedback
-		? Math.round((feedback.good / totalFeedback) * 100)
+		? Math.round(((feedback.good + feedback.neutral) / totalFeedback) * 100)
 		: 0;
 
 	return (
 		<div className="app-container">
 			<Description />
-			<Options onLeaveFeedback={handleFeedback} onReset={handleReset} />
-			<Feedback
-				good={feedback.good}
-				neutral={feedback.neutral}
-				bad={feedback.bad}
-				total={totalFeedback}
-				positivePercentage={positivePercentage}
-			/>
+			<Options onLeaveFeedback={updateFeedback} onReset={handleReset} />
+
+			{totalFeedback > 0 ? (
+				<Feedback
+					good={feedback.good}
+					neutral={feedback.neutral}
+					bad={feedback.bad}
+					total={totalFeedback}
+					positivePercentage={positivePercentage}
+				/>
+			) : (
+				<Notification />
+			)}
 		</div>
 	);
 }
